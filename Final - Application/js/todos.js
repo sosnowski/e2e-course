@@ -1,17 +1,16 @@
 angular.module('myapp').factory('todos', function ($http) {
     return {
+        //POST /api/todos
         create: function (newValue) {
-            return $http.post('/api/todos', {
-                value: newValue
-            });
+
         },
+        //put /api/todos
         update: function (newRecord) {
-            return $http.put('/api/todos', {
-                value: newValue
-            })
+
         },
+        //GET /api/todos
         load: function () {
-            return $http.get('/api/todos');
+            
         }
     };
 });

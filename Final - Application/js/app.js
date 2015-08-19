@@ -4,24 +4,22 @@ angular.module('myapp', []).controller('ToDoCtrl', function ($scope, todos) {
             id: 1,
             value: 'test',
             done: false
+        },
+        {
+            id: 1,
+            value: 'test2',
+            done: false
         }
     ];
     $scope.inputValue = '';
 
     $scope.toggle = function (record) {
-            record.done = !record.done;
-            todos.update(record).then(function () {
-
-            });
+        //change record status, and update it
     };
 
     $scope.add = function () {
-        todos.create($scope.inputValue).then(function (newRecord) {
-            $scope.elements.push(newRecord);
-        });
+        //save element
     };
 
-    todos.load().then(function (data) {
-        $scope.elements = data;
-    });
+    //load elements
 });
