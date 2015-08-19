@@ -6,7 +6,17 @@
 	}
 
 	addManyValues = function () {
-
+		var sum1 = 0;
+		for (var i = 0; i < arguments.length; i++) {
+			sum1 += arguments[i];
+		}
+		return function () {
+			var sum2 = 0;
+			for (var i = 0; i < arguments.length; i++) {
+				sum2 += arguments[i];
+			}
+			return sum1 + sum2;
+		};
 	};
 
 	global.APP.addManyValues = addManyValues;
