@@ -1,4 +1,16 @@
-angular.module('myapp', []).controller('ToDoCtrl', function ($scope, todos) {
+angular.module('myapp', []).controller('ToDoCtrl', function ($scope) {
+
+    function updateCounters() {
+        $scope.countAll = $scope.elements.length;
+
+        $scope.countTodo = 0;
+        $scope.elements.forEach(function (element) {
+            if (!element.done) {
+                $scope.countTodo++;
+            }
+        });
+    }
+
     $scope.elements = [
         {
             id: 1,
@@ -6,20 +18,30 @@ angular.module('myapp', []).controller('ToDoCtrl', function ($scope, todos) {
             done: false
         },
         {
-            id: 1,
+            id: 2,
             value: 'test2',
             done: false
         }
     ];
     $scope.inputValue = '';
+    $scope.countTodo = 0;
+    $scope.countAll = 0;
 
     $scope.toggle = function (record) {
-        //change record status, and update it
+        record.done = !record.done;
+        updateCounters();
     };
 
     $scope.add = function () {
-        //save element
+        $scope.elements.push({
+            id: Date.now(),
+            value: $scope.inputValue,
+            done: false
+        });
+        $scope.inputValue = '';
+        updateCounters();
     };
 
+    updateCounters();
     //load elements
 });

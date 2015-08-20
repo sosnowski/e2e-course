@@ -6,23 +6,30 @@
 	}
 
 	mapArray = function (array, callback, ctx) {
+		var result = [];
+		for (var i = 0; i < array.length; i++) {
+			result[i] = (callback.apply(ctx, [array[i], i, array]));
+		}
 
+		return result;
 	};
 
 	global.APP.mapArray = mapArray;
 
 }(window));
+// var arr = [1, 2, 3, 4, 5, 6];
+//
+// var callback = function (arrElement, index, array) {
+// 	return arrElement + 2;
+// };
+//
+// var newArray = mapArray(arr, callback);
+//
+//
+// Przykład użycia:
+
 
 /*
-
-Przykład użycia:
-
-var arr = [1, 2, 3, 4, 5, 6];
-
-var newArray = mapArray(arr, function (arrElement, index, array) {
-	return arrElement + 2;
-});
-
 newArray; // [3, 4, 5, 6, 7, 8]
 
 var values = {
